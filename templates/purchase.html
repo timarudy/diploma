@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Home</title>
+{% endblock %}
+
+{% block header %}
+	<h1 align="center" class="display-4"> ГЛАВНАЯ </h1>
+{% endblock %}
+
+{% block nav %}
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'home' %}"><button class="btn btn-secondary"> Назад </button></a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div align="center">
+        <form method="post">
+            {% csrf_token %}
+            <span> Enter the amont of tickets: {{ form.ticket_amount }} </span> <br>
+            <button type="submit" class="btn btn-success" style="margin-left: 180px; margin-top: 10px;">Buy</button>
+        </form>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    {% if message.tags == "error" %}
+                        <li style= "color:red;">
+                            {{ message }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

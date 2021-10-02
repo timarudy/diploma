@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Add Session</title>
+{% endblock %}
+
+{% block header %}
+    <h1 align="center" class="display-4">ДОБАВИТЬ СЕАНС</h1>
+{% endblock %}
+
+{% block nav %}
+    <a href="{% url 'home' %}"><button class="btn btn-secondary"> Назад </button></a>
+{% endblock %}
+
+{% block content %}
+    <div align="center">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Добавить Сеанс</button>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
