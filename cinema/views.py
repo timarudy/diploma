@@ -64,7 +64,7 @@ class TicketBuy(LoginRequiredMixin, CreateView):
         try:
             purchase = form.save(commit=False)
             purchase.user = self.request.user
-            purchase.ticket = Session.objects.get(pk=1)
+            purchase.ticket = Session.objects.get(pk=self.kwargs["pk"])
             purchase.save()
             return super().form_valid(form)
         except NotEnoughMoney:
