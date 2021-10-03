@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block header %}
-    <h1 align="center" class="display-4">ДОБАВИТЬ СЕАНС</h1>
+    <h1 align="center" class="display-4">SESSION CREATION</h1>
 {% endblock %}
 
 {% block nav %}
-    <a href="{% url 'home' %}"><button class="btn btn-secondary"> Назад </button></a>
+    <a href="{% url 'home' %}"><button class="btn btn-secondary"> Back </button></a>
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-success">Добавить Сеанс</button>
+            <button type="submit" class="btn btn-success"> Add </button>
         </form>
     </div>
 

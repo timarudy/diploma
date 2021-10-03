@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block head %}
-    <title>Регистрация</title>
+    <title>Registration</title>
 {% endblock %}
 
 {% block header %}
-	<h1 align="center" class="display-4">РЕГИСТРАЦИЯ</h1>
+	<h1 align="center" class="display-4">REGISTRATION</h1>
 {% endblock %}
 
 {% block nav %}
-	<a href="{% url 'home' %}"><button class="btn btn-secondary"> Назад </button></a>
+	<a href="{% url 'home' %}"><button class="btn btn-secondary"> Back </button></a>
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
 		<form method="post">
 			{% csrf_token %}
 			{{ form.as_p }}
-			<button type="submit" class="btn btn-success">Зарегистрироваться</button>
+			<button type="submit" class="btn btn-success">Register</button>
 		</form>
 	</div>
 {% endblock %}
