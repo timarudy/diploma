@@ -18,7 +18,7 @@
     <div align="center">
         <form method="post">
             {% csrf_token %}
-            <span> Enter the amont of tickets: {{ form.ticket_amount }} </span> <br>
+            {{ form.as_p }} <br>
             <button type="submit" class="btn btn-success" style="margin-left: 180px; margin-top: 10px;">Buy</button>
         </form>
         {% if messages %}

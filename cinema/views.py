@@ -66,7 +66,7 @@ class TicketBuy(LoginRequiredMixin, CreateView):
             purchase.user = self.request.user
             purchase.ticket = Session.objects.get(pk=self.kwargs["pk"])
             purchase.save()
-            return super().form_valid(form)
+            return HttpResponseRedirect(self.get_success_url())
         except NotEnoughMoney:
             return messages.error(self.request, "У вас недостаточно денег")
         except CannotBeZero:
@@ -74,4 +74,7 @@ class TicketBuy(LoginRequiredMixin, CreateView):
         except NotEnoughTickets:
             return messages.error(self.request, "Недостаточно мест")
         finally:
-            return redirect(f"/homepage/")
+            return redirect(f"/homepage/ticket-purchase/{self.kwargs['pk']}")
+
+    def get_success_url(self):
+        return "/homepage/"

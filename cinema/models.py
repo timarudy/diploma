@@ -52,15 +52,14 @@ class Purchase(models.Model):
         price = self.ticket.ticket_price
         user = self.user
         ticket = self.ticket
-        free_places = self.ticket.free_places
         if user.money >= (price * ticket_amount) and ticket_amount != 0:
+            ticket.free_places -= ticket_amount
             user.money -= (price * ticket_amount)
-            free_places -= ticket_amount
             with transaction.atomic():
                 user.save()
                 ticket.save()
                 super(Purchase, self).save(*args, **kwargs)
-        elif (free_places - ticket_amount) == 0:
+        elif (ticket.free_places - ticket_amount) < 0:
             raise NotEnoughTickets
         elif user.money - (price * ticket_amount) < 0:
             raise NotEnoughMoney

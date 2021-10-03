@@ -45,8 +45,6 @@
                         <h3 style="color: black; padding: 25px;"><a href="{% url 'purchase' ticket.pk %}"> {{ ticket.free_places }} </a></h3>
                     </div>
                 </div>
-            {% else %}
-                <a><button type="button" class="btn btn-danger" style="margin-left: 10px; margin-top: 45px;"> Out Of Stock </button></a>
             {% endif %}
         {% endfor %}
     {% endif %}
