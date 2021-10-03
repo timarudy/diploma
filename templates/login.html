@@ -13,7 +13,8 @@
 
 		<span> Not Registered Yet? <a href="{% url 'register' %}"><button type="button" class="btn btn-warning"> Register </button></a></span>
 	{% else %}
-		<a href="{% url 'logout' %}"><button> Log Out </button></a>
+		<a href="{% url 'home' %}"><button class="btn btn-secondary" style="margin-right: 10px;"> Homepage </button></a>
+		<a href="{% url 'logout' %}"><button type="button" class="btn btn-warning"> Log Out </button></a>
 	{% endif %}
 {% endblock %}
 

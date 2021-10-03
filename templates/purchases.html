@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Purchases</title>
+{% endblock %}
+
+{% block header %}
+	<h1 align="center" class="display-4"> YOUR PURCHASES </h1>
+{% endblock %}
+
+{% block nav %}
+    {% if request.user.is_authenticated %}
+        <span style="margin-right: 1220px; margin-top: 7px;"> Money: {{ request.user.money }}</span>
+        <a href="{% url 'home' %}"><button class="btn btn-secondary"> Back </button></a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div align="center">
+        {% for session in object_list %}
+            {% if session.user == request.user %}
+                <div style="margin-bottom: 20px; margin-left: 550px;">
+                    <span> Cinema: {{ session.ticket.cinema }} </span> <br>
+                    <span> Dates: {{ session.ticket.first_day }} - {{ session.ticket.last_day }} </span> <br>
+                    <span> Time: {{ session.ticket.begins_at }} - {{ session.ticket.ends_at }} </span> <br>
+                    <span> Tickets Amount: {{ session.ticket_amount }} </span> <br>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

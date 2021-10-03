@@ -18,7 +18,7 @@
         <a href="{% url 'logout' %}"><button type="button" class="btn btn-warning" style="margin-left: 910px;"> Выйти </button></a>
     {% else %}
         <span style="margin-right: 1040px; margin-top: 7px;"> Money: {{ request.user.money }} </span>
-        <a href="{% url 'home' %}" style="margin-right: 10px;"><button type="button" class="btn btn-info"> Your Purchases </button></a>
+        <a href="{% url 'purchases' %}" style="margin-right: 10px;"><button type="button" class="btn btn-info"> Your Purchases </button></a>
         <a href="{% url 'logout' %}"><button type="button" class="btn btn-warning"> Log Out </button></a>
     {% endif %}
 {% endblock %}

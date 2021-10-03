@@ -8,6 +8,7 @@ from .models import *
 from django.shortcuts import redirect
 from .forms import BuyForm, CinemaAppendForm, RegisterForm, SessionAppendForm
 
+
 class Login(LoginView):
     template_name = 'login.html'
 
@@ -34,14 +35,20 @@ class Logout(LoginRequiredMixin, LogoutView):
 
 class SessionListView(ListView):
     model = Session
-    extra_context = {'form': BuyForm}
     template_name = 'homepage.html'
+
+
+class PurchasesListView(ListView):
+    model = Purchase
+    template_name = "purchases.html"
+
 
 class CinemaAppend(LoginRequiredMixin, CreateView):
     login_url = "/login/"
     form_class = CinemaAppendForm
     template_name = "add_cinema.html"
     success_url = '/homepage/'
+
 
 class SessionAppend(LoginRequiredMixin, CreateView):
     login_url = "/login/"
@@ -54,6 +61,7 @@ class SessionAppend(LoginRequiredMixin, CreateView):
         obj.free_places = obj.cinema.size
         obj.save()
         return super().form_valid(form)
+
 
 class TicketBuy(LoginRequiredMixin, CreateView):
     login_url = "/login/"
