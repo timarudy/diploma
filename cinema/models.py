@@ -59,7 +59,7 @@ class Purchase(models.Model):
                 user.save()
                 ticket.save()
                 super(Purchase, self).save(*args, **kwargs)
-        elif (ticket.free_places - ticket_amount) < 0:
+        elif ticket.free_places < ticket_amount:
             raise NotEnoughTickets
         elif user.money - (price * ticket_amount) < 0:
             raise NotEnoughMoney

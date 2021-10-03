@@ -26,15 +26,39 @@
 {% block content %}
     {% if not request.user.is_authenticated %}
         {% for ticket in object_list %}
-            <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-left: 20px;">
-                <h3 style="color: black; padding: 25px;"> {{ ticket.cinema.size }} </h3>
-            </div>
+            {% if ticket.free_places > 0 %}
+                <div style="margin-left: 25px;">
+                    <span style="color: black; padding: 5px; margin-left: 7px;"> Cost: {{ ticket.ticket_price }} </span>
+                    <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
+                        <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
+                    </div>
+                </div>
+            {% else %}
+                <div style="margin-left: 25px;">
+                    <span style="color: black; padding: 5px; margin-left: 7px; color: crimson;"> Out Of Stock </span>
+                    <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
+                        <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
+                    </div>
+                </div>
+            {% endif %}
         {% endfor %}
     {% elif request.user.is_superuser %}
         {% for ticket in object_list %}
-            <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-left: 20px;">
-                <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
-            </div>
+            {% if ticket.free_places > 0 %}
+                <div style="margin-left: 25px;">
+                    <span style="color: black; padding: 5px; margin-left: 7px;"> Cost: {{ ticket.ticket_price }} </span>
+                    <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
+                        <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
+                    </div>
+                </div>
+            {% else %}
+                <div style="margin-left: 25px;">
+                    <span style="color: black; padding: 5px; margin-left: 7px; color: crimson;"> Out Of Stock </span>
+                    <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
+                        <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
+                    </div>
+                </div>
+            {% endif %}
         {% endfor %}
     {% else %}
         {% for ticket in object_list %}
@@ -43,6 +67,13 @@
                     <span style="color: black; padding: 5px; margin-left: 7px;"> Cost: {{ ticket.ticket_price }} </span>
                     <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
                         <h3 style="color: black; padding: 25px;"><a href="{% url 'purchase' ticket.pk %}"> {{ ticket.free_places }} </a></h3>
+                    </div>
+                </div>
+            {% else %}
+                <div style="margin-left: 25px;">
+                    <span style="color: black; padding: 5px; color: crimson;"> Out Of Stock </span>
+                    <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
+                        <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
                     </div>
                 </div>
             {% endif %}

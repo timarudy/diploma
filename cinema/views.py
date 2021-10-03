@@ -66,7 +66,7 @@ class TicketBuy(LoginRequiredMixin, CreateView):
             purchase.user = self.request.user
             purchase.ticket = Session.objects.get(pk=self.kwargs["pk"])
             purchase.save()
-            return HttpResponseRedirect(self.get_success_url())
+            return redirect(self.get_success_url())
         except NotEnoughMoney:
             return messages.error(self.request, "У вас недостаточно денег")
         except CannotBeZero:
