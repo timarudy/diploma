@@ -35,9 +35,9 @@
                 </div>
             {% else %}
                 <div style="margin-left: 25px;">
-                    <span style="color: black; padding: 5px; margin-left: 7px; color: crimson;"> Out Of Stock </span>
+                    <span style="padding: 5px; margin-left: 7px; color: crimson;"> Out Of Stock </span>
                     <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
-                        <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
+                        <h3 style="color: rgb(173, 26, 26); padding: 25px;"> {{ ticket.free_places }} </h3>
                     </div>
                 </div>
             {% endif %}
@@ -50,12 +50,15 @@
                     <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
                         <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
                     </div>
+                    {% if ticket.free_places == ticket.cinema.size %}
+                        <a href="{% url 'update' %}"><button type="button" class="btn btn-danger" style="width: 80px; margin-top: 10px; padding-left: 12px; margin-left: 3px;"> Update </button></a>
+                    {% endif %}
                 </div>
             {% else %}
                 <div style="margin-left: 25px;">
-                    <span style="color: black; padding: 5px; margin-left: 7px; color: crimson;"> Out Of Stock </span>
+                    <span style="padding: 5px; color: crimson;"> Out Of Stock </span>
                     <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
-                        <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
+                        <h3 style="color: rgb(173, 26, 26); padding: 25px;"> {{ ticket.free_places }} </h3>
                     </div>
                 </div>
             {% endif %}
@@ -71,9 +74,9 @@
                 </div>
             {% else %}
                 <div style="margin-left: 25px;">
-                    <span style="color: black; padding: 5px; color: crimson;"> Out Of Stock </span>
+                    <span style="padding: 5px; color: crimson;"> Out Of Stock </span>
                     <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
-                        <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
+                        <h3 style="color: rgb(173, 26, 26); padding: 25px;"> {{ ticket.free_places }} </h3>
                     </div>
                 </div>
             {% endif %}

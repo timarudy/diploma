@@ -10,5 +10,6 @@ urlpatterns = [
     path('homepage/add-cinema/', CinemaAppend.as_view(), name='cinema_append'),
     path('homepage/add-session/', SessionAppend.as_view(), name='session_append'),
     path('homepage/ticket-purchase/<int:pk>/', TicketBuy.as_view(), name='purchase'),
-    path('homepage/purchases/', PurchasesListView.as_view(), name='purchases')
+    path('homepage/purchases/', PurchasesListView.as_view(), name='purchases'),
+    path('homepage/update-session/', SessionUpdate.as_view(), name='update')
 ]

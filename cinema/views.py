@@ -4,6 +4,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.http.response import HttpResponseRedirect
 from django.views.generic import CreateView, ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
 from .models import *
 from django.shortcuts import redirect
 from .forms import BuyForm, CinemaAppendForm, RegisterForm, SessionAppendForm
@@ -41,6 +42,16 @@ class SessionListView(ListView):
 class PurchasesListView(ListView):
     model = Purchase
     template_name = "purchases.html"
+
+
+class SessionUpdate(LoginRequiredMixin, UpdateView):
+    login_url = "/login/"
+    template_name = "session_update.html"
+    model = Session
+    exclude = ["free_places"]
+
+    def get_success_url(self):
+        return "/homepage/"
 
 
 class CinemaAppend(LoginRequiredMixin, CreateView):
