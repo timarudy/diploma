@@ -48,7 +48,13 @@ class SessionUpdate(LoginRequiredMixin, UpdateView):
     login_url = "/login/"
     template_name = "session_update.html"
     model = Session
-    exclude = ["free_places"]
+    fields = ["ticket_price", "cinema", "first_day", "last_day", "begins_at", "ends_at"]
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.free_places = obj.cinema.size
+        obj.save()
+        return super().form_valid(form)
 
     def get_success_url(self):
         return "/homepage/"

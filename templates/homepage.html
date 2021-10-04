@@ -14,7 +14,7 @@
     {% elif request.user.is_superuser %}
         <a href="/admin/"><button type="button" class="btn btn-info" style="margin-right: 10px;"> Admin </button></a>
         <a href="{% url 'cinema_append' %}"><button type="button" class="btn btn-success"> Add Cinema </button></a>
-        <a href="{% url 'session_append' %}"><button type="button" class="btn btn-success" style="margin-left: 10px;"> Add Session </button></a>
+        <a href="{% url 'session_append' %}"><button type="button" class="btn btn-success" style="margin-left: 10px; margin-right: 50px;"> Add Session </button></a>
         <a href="{% url 'logout' %}"><button type="button" class="btn btn-warning" style="margin-left: 910px;"> Выйти </button></a>
     {% else %}
         <span style="margin-right: 1040px; margin-top: 7px;"> Money: {{ request.user.money }} </span>
@@ -51,7 +51,7 @@
                         <h3 style="color: black; padding: 25px;"> {{ ticket.free_places }} </h3>
                     </div>
                     {% if ticket.free_places == ticket.cinema.size %}
-                        <a href="{% url 'update' %}"><button type="button" class="btn btn-danger" style="width: 80px; margin-top: 10px; padding-left: 12px; margin-left: 3px;"> Update </button></a>
+                        <a href="{% url 'update' ticket.pk %}"><button type="button" class="btn btn-danger" style="width: 80px; margin-top: 10px; padding-left: 12px; margin-left: 3px;"> Update </button></a>
                     {% endif %}
                 </div>
             {% else %}
