@@ -9,3 +9,6 @@ class CannotBeZero(ValueError):
 class NotEnoughMoney(ValueError):
     pass
 
+
+class NotCorrectTime(ValueError):
+    pass

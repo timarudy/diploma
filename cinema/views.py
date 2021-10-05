@@ -39,15 +39,6 @@ class SessionListView(ListView):
     model = Session
     template_name = 'homepage.html'
 
-    def form_valid(self, form):
-        obj = form.save(commit=False)
-        if obj.last_day <= date.today():
-            session = Session.objects.get(pk=self.kwargs["pk"])
-            session.delete()
-        else:
-            obj.save()
-        return super().form_valid(form)
-
 
 class PurchasesListView(ListView):
     model = Purchase
@@ -84,10 +75,18 @@ class SessionAppend(LoginRequiredMixin, CreateView):
     success_url = '/homepage/'
 
     def form_valid(self, form):
-        obj = form.save(commit=False)
-        obj.free_places = obj.cinema.size
-        obj.save()
-        return super().form_valid(form)
+        try:
+            obj = form.save(commit=False)
+            obj.free_places = obj.cinema.size
+            obj.save()
+            return redirect(self.get_success_url())
+        except NotCorrectTime:
+            return messages.error(self.request, "На данное время уже есть сеанс")
+        finally:
+            return super().form_valid(form)
+
+    def get_success_url(self):
+        return "/homepage/" 
 
 
 class TicketBuy(LoginRequiredMixin, CreateView):

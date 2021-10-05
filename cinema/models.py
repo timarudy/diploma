@@ -1,5 +1,5 @@
 from django.utils import timezone
-from cinema.my_exeptions import CannotBeZero, NotEnoughMoney, NotEnoughTickets
+from cinema.my_exeptions import CannotBeZero, NotCorrectTime, NotEnoughMoney, NotEnoughTickets
 from django.db import models, transaction
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator, MinValueValidator
