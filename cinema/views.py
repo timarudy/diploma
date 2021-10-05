@@ -8,6 +8,7 @@ from django.views.generic.edit import UpdateView
 from .models import *
 from django.shortcuts import redirect
 from .forms import BuyForm, CinemaAppendForm, RegisterForm, SessionAppendForm
+from datetime import date
 
 
 class Login(LoginView):
@@ -37,6 +38,15 @@ class Logout(LoginRequiredMixin, LogoutView):
 class SessionListView(ListView):
     model = Session
     template_name = 'homepage.html'
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        if obj.last_day <= date.today():
+            session = Session.objects.get(pk=self.kwargs["pk"])
+            session.delete()
+        else:
+            obj.save()
+        return super().form_valid(form)
 
 
 class PurchasesListView(ListView):
