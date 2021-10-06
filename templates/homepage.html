@@ -71,6 +71,11 @@
                     <div style="background-color: cornflowerblue; width: 90px; height: 90px; margin-top: 10px; border-style: inset; border-color: blue;">
                         <h3 style="color: black; padding: 25px;"><a href="{% url 'purchase' ticket.pk %}"> {{ ticket.free_places }} </a></h3>
                     </div>
+                    <div style="font-size: 12px;">
+                        <span> {{ ticket.cinema }} </span> <br>
+                        <span> {{ ticket.first_day }} - {{ ticket.last_day }} </span> <br>
+                        <span> {{ ticket.begins_at }} - {{ ticket.ends_at }} </span> <br>
+                    </div>
                 </div>
             {% else %}
                 <div style="margin-left: 25px;">
